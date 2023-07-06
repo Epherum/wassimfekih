@@ -39,7 +39,7 @@ function Contact() {
       <div className={styles.buttons}>
         <a
           href="
-            https://www.linkedin.com/in/wassim-fekih/
+            https://www.linkedin.com/in/wassimfekih/
           "
           target="_blank"
           className={styles.button}
@@ -55,7 +55,14 @@ function Contact() {
         >
           GITHUB
         </a>
-        <a className={styles.button}>RESUME</a>
+        <a
+          className={styles.button}
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          RESUME
+        </a>
       </div>
     </section>
   );

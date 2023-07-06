@@ -24,7 +24,7 @@ const heyVariant = {
 };
 
 const heyLettersVariant = {
-  hidden: { y: 100, opacity: 0 },
+  hidden: { y: 40, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
@@ -45,7 +45,7 @@ const imVariant = {
 };
 
 const imLettersVariant = {
-  hidden: { y: 100, opacity: 0 },
+  hidden: { y: 40, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
@@ -67,7 +67,7 @@ const wassimVariant = {
 };
 
 const wassimLettersVariant = {
-  hidden: { y: 100, opacity: 0 },
+  hidden: { y: 40, opacity: 0 },
   visible: {
     opacity: 1,
     y: 0,
@@ -106,7 +106,7 @@ const subtitle3Variant = {
   },
 };
 const subtitleLettersVariant = {
-  hidden: { y: 100, opacity: 0 },
+  hidden: { y: 40, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,

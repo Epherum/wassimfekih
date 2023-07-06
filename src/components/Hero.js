@@ -151,8 +151,9 @@ function Hero() {
           </motion.a>
           <motion.a
             variants={linkVariant}
-            href="#"
+            href="/resume.pdf"
             target="_blank"
+            rel="noopener noreferrer"
             className={styles.link}
           >
             RESUME
