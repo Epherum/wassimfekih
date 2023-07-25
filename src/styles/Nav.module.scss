@@ -3,9 +3,11 @@
   position: fixed;
   width: 100%;
   z-index: 100;
+  mix-blend-mode: difference;
   justify-content: space-between;
   align-items: center;
   padding: min(3.5rem, 2.9vw) min(4rem, 3.3vw);
+  padding-bottom: 0.8em;
   color: rgb(218, 218, 218);
   @media (max-width: 991px) {
     margin-top: 1.5em;

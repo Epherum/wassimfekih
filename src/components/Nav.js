@@ -28,7 +28,7 @@ function Nav() {
     scroll && scroll.scrollTo(0);
   };
 
-  const delay = 4.8;
+  const delay = 3.3;
   const navItems = [
     { text: "home" },
     { text: "projects" },

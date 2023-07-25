@@ -1,5 +1,6 @@
 import "swiper/swiper-bundle.min.css";
 import styles from "@/styles/Projects.module.scss";
+import { BsArrowUpRight } from "react-icons/bs";
 
 function Projects() {
   return (
@@ -24,11 +25,15 @@ function Projects() {
           </div>
           <div className={styles.projectdesc}>
             <div className={styles.links}>
-              <a href="https://wassim-missguided.web.app/" target="_blank">
-                LIVE SITE
+              <a
+                className={styles.site}
+                href="https://wassim-missguided.web.app/"
+                target="_blank"
+              >
+                VISIT SITE
               </a>
               <a href="https://github.com/Epherum/Missguided" target="_blank">
-                GITHUB
+                VIEW CODE
               </a>
             </div>
             <p className={styles.description}>
@@ -52,11 +57,15 @@ function Projects() {
           </div>
           <div className={styles.projectdesc}>
             <div className={styles.links}>
-              <a href="https://zapperr.vercel.app/" target="_blank">
-                LIVE SITE
+              <a
+                className={styles.site}
+                href="https://zapperr.vercel.app/"
+                target="_blank"
+              >
+                VISIT SITE
               </a>
               <a href="https://github.com/Epherum/Zapper" target="_blank">
-                GITHUB
+                VIEW CODE
               </a>
             </div>
             <p className={styles.description}>

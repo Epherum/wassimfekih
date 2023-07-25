@@ -111,6 +111,24 @@
         color: #111111;
       }
     }
+    .site {
+      border: 3px solid rgb(218, 218, 218);
+      animation: colorchange 4s infinite alternate;
+    }
+    @keyframes colorchange {
+      0%,
+      100% {
+        border-color: #42c6c6;
+      } /* Teal */
+      20%,
+      80% {
+        border-color: #81bbfe;
+      } /* Light Blue */
+      40%,
+      60% {
+        border-color: #ff7492;
+      } /* Pink */
+    }
     .links {
       display: flex;
       gap: 2em;

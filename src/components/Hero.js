@@ -4,11 +4,8 @@ import ProfilePic from "../../public/selfie.jpeg";
 import { motion, useAnimation } from "framer-motion";
 import animations from "@/animations/HeroAnimations";
 import { useEffect } from "react";
-import { useColor } from "@/Color.context";
 
 function Hero() {
-  const { black, toggleColor } = useColor();
-
   const {
     heyVariant,
     heyLettersVariant,

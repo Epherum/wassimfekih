@@ -1,4 +1,4 @@
-const delay = 4.7;
+const delay = 3.2;
 
 const imageVariant = {
   hidden: { opacity: 0, y: 20 },

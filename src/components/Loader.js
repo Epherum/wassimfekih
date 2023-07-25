@@ -22,14 +22,14 @@ const letterVariants = {
       ease: "easeOut",
     },
   },
-  bounceLeft: {
-    y: [0, -17, 0],
-    x: [0, 1, 0],
-    transition: {
-      duration: 0.7,
-      ease: "easeOut",
-    },
-  },
+  // bounceLeft: {
+  //   y: [0, -17, 0],
+  //   x: [0, 1, 0],
+  //   transition: {
+  //     duration: 0.7,
+  //     ease: "easeOut",
+  //   },
+  // },
 };
 
 const containerVariants = {
@@ -55,7 +55,7 @@ const containerVariants = {
     rotate: 25,
     y: 700,
     transition: {
-      delay: 0.7,
+      delay: 0.5,
       duration: 0.6,
       ease: "easeIn",
     },
@@ -71,7 +71,7 @@ function Loader() {
     const animate = async () => {
       await animationControls.start("visible");
       await animationControls.start("bounceRight");
-      await animationControls.start("bounceLeft");
+      // await animationControls.start("bounceLeft");
       await animationControls.start("hide");
     };
 
@@ -84,7 +84,7 @@ function Loader() {
     setTimeout(() => {
       document.body.style.backgroundColor = "#111111";
       loaderRef.current.style.opacity = 0;
-    }, 4500);
+    }, 3100);
   }, []);
 
   return (
@@ -135,7 +135,7 @@ const counterVariants = {
   counterHide: {
     opacity: 0,
     transition: {
-      delay: 2.9,
+      delay: 2,
       duration: 0.5,
       ease: "easeOut",
     },
@@ -156,7 +156,7 @@ const Counter = () => {
   }, [animationControls]);
 
   useEffect(() => {
-    const duration = 3700; // Total duration of the counting animation in milliseconds
+    const duration = 2300; // Total duration of the counting animation in milliseconds
 
     const easeOutBezier = (x) => {
       return 1 - Math.pow(1 - x, 2); // Custom easing function (slow -> fast -> fast -> slow)

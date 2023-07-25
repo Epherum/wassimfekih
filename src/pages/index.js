@@ -9,7 +9,6 @@ import Loader from "@/components/Loader";
 import { SmoothScrollProvider } from "@/SmoothScroll.context";
 import Marquee from "react-fast-marquee";
 import { motion } from "framer-motion";
-import { useColor, ColorProvider } from "@/Color.context";
 
 const FeaturedProjectsVariant1 = {
   hidden: {},
@@ -47,16 +46,12 @@ const FeaturedProjectsLettersVariant = {
 export default function Home() {
   return (
     <SmoothScrollProvider options={{ smooth: true }}>
-      <ColorProvider>
-        <HomeContent />
-      </ColorProvider>
+      <HomeContent />
     </SmoothScrollProvider>
   );
 }
 
 function HomeContent() {
-  const { black } = useColor();
-
   return (
     <>
       <Head>

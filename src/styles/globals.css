@@ -29,7 +29,7 @@ html.has-scroll-dragging {
   min-height: 100vh;
 }
 
-.c-scrollbar {
+/* .c-scrollbar {
   position: absolute;
   right: 0;
   top: 0;
@@ -67,7 +67,7 @@ html.has-scroll-dragging {
 .has-scroll-dragging .c-scrollbar_thumb {
   cursor: -webkit-grabbing;
   cursor: grabbing;
-}
+} */
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
