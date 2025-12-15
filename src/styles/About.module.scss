@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 27.2% 24.6% 20% auto;
   grid-template-rows: 50% 50%;
-  color: rgb(218, 218, 218);
+  color: var(--color-text-primary);
   margin-bottom: min(12rem, 10vw);
 
   @media screen and (max-width: 768px) {
@@ -81,7 +81,7 @@
     }
 
     @media screen and (max-width: 768px) {
-      border-top: 1px solid white;
+      border-top: 1px solid var(--color-border-subtle-strong);
       padding-top: min(4rem, 3.3vw);
       display: flex;
       justify-content: space-between;
@@ -127,8 +127,8 @@
     height: min(3.5rem, 2.9vw);
     border-radius: min(3rem, 2.5vw);
     background-color: transparent;
-    border: 1px solid white;
-    color: white;
+    border: 1px solid var(--color-border-strong);
+    color: var(--color-text-primary);
     grid-column: 4/5;
     grid-row: 2/3;
     justify-self: end;
@@ -143,8 +143,8 @@
     gap: 0.5em;
 
     &:hover {
-      background-color: white;
-      color: #111111;
+      background-color: var(--color-text-primary);
+      color: var(--color-contrast);
     }
 
     @media screen and (max-width: 768px) {

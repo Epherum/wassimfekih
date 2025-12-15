@@ -1,17 +1,17 @@
 .light {
   * {
-    color: #371f0e !important;
+    color: var(--color-text-primary) !important;
     transition: color 0.5s ease !important;
-    border-color: #371f0e !important;
+    border-color: var(--color-text-primary) !important;
   }
   body {
-    background-color: #f3eee4 !important;
+    background-color: var(--color-background) !important;
   }
 }
 
 .dark {
   * {
-    color: rgb(218, 218, 218) !important;
+    color: var(--color-contrast) !important;
     transition: color 0.5s ease !important;
   }
   body {
@@ -20,15 +20,15 @@
 }
 
 .marquee {
-  color: rgb(218, 218, 218);
+  color: var(--color-text-primary);
   font-family: "Ade", serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 2rem 0;
   font-size: 1.1rem;
-  border-top: 1px solid rgba(218, 218, 218, 0.611);
-  border-bottom: 1px solid rgba(218, 218, 218, 0.632);
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
   margin: 2rem 0 4rem 0;
   .marquee__inner {
     display: flex;
@@ -44,7 +44,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: rgb(218, 218, 218);
+  color: var(--color-text-primary);
   font-family: "Ade", serif;
   font-size: 10em;
   letter-spacing: 0.1em;

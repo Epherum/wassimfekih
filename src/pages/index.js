@@ -9,6 +9,7 @@ import Loader from "@/components/Loader";
 import { SmoothScrollProvider } from "@/SmoothScroll.context";
 import Marquee from "react-fast-marquee";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const FeaturedProjectsVariant1 = {
   hidden: {},
@@ -52,6 +53,8 @@ export default function Home() {
 }
 
 function HomeContent() {
+  const [isReady, setIsReady] = useState(false);
+
   return (
     <>
       <Head>
@@ -65,9 +68,9 @@ function HomeContent() {
           
         `}
       >
-        <Loader />
-        <Nav />
-        <Hero />
+        <Loader onFinish={() => setIsReady(true)} />
+        <Nav isReady={isReady} />
+        <Hero isReady={isReady} />
         <Marqueee />
         <About />
         <FeaturedProjects />

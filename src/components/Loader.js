@@ -62,8 +62,10 @@ const containerVariants = {
   },
 };
 
-function Loader() {
+function Loader({ onFinish }) {
   const animationControls = useAnimation();
+  const [isReady, setIsReady] = useState(false);
+  const hasFinishedRef = useRef(false);
 
   const loaderRef = useRef(null);
 
@@ -72,20 +74,68 @@ function Loader() {
       await animationControls.start("visible");
       await animationControls.start("bounceRight");
       // await animationControls.start("bounceLeft");
-      await animationControls.start("hide");
     };
 
     animate();
   }, [animationControls]);
 
   useEffect(() => {
-    document.body.style.backgroundColor = "#ece4e4";
+    document.body.style.backgroundColor = "#111111";
 
-    setTimeout(() => {
-      document.body.style.backgroundColor = "#111111";
-      loaderRef.current.style.opacity = 0;
-    }, 3100);
+    let isCancelled = false;
+    let loadHandler = null;
+
+    const minDelay = new Promise((resolve) => setTimeout(resolve, 0));
+    const fontsReady = document.fonts?.ready ?? Promise.resolve();
+    const pageLoaded = new Promise((resolve) => {
+      if (document.readyState === "complete") {
+        resolve();
+        return;
+      }
+      loadHandler = () => resolve();
+      window.addEventListener("load", loadHandler, { once: true });
+    });
+
+    const readiness = Promise.all([fontsReady, pageLoaded, minDelay]);
+    const timeoutId = setTimeout(() => {
+      if (!isCancelled) {
+        setIsReady(true);
+      }
+    }, 8000);
+
+    readiness.then(() => {
+      if (isCancelled) return;
+      clearTimeout(timeoutId);
+      setIsReady(true);
+    });
+
+    return () => {
+      isCancelled = true;
+      clearTimeout(timeoutId);
+      if (loadHandler) {
+        window.removeEventListener("load", loadHandler);
+      }
+    };
   }, []);
+
+  useEffect(() => {
+    if (!isReady) return;
+
+    const finishLoader = async () => {
+      if (hasFinishedRef.current) return;
+      hasFinishedRef.current = true;
+      document.body.style.backgroundColor = "var(--color-background)";
+      await animationControls.start("hide");
+      if (loaderRef.current) {
+        loaderRef.current.style.opacity = 0;
+      }
+      if (onFinish) {
+        onFinish();
+      }
+    };
+
+    finishLoader();
+  }, [isReady, animationControls, onFinish]);
 
   return (
     <div className={styles.loader} id="loader" ref={loaderRef}>
@@ -115,7 +165,7 @@ function Loader() {
           ))}
         </motion.div>
       </div>
-      <Counter />
+      <Counter isReady={isReady} />
     </div>
   );
 }
@@ -127,7 +177,7 @@ const counterVariants = {
   counterVisible: {
     opacity: 1,
     transition: {
-      delay: 0.5,
+      delay: 0.3,
       duration: 0.5,
       ease: "easeOut",
     },
@@ -135,55 +185,57 @@ const counterVariants = {
   counterHide: {
     opacity: 0,
     transition: {
-      delay: 2,
       duration: 0.5,
       ease: "easeOut",
     },
   },
 };
 
-const Counter = () => {
+const Counter = ({ isReady }) => {
   const [count, setCount] = useState(0);
   const animationControls = useAnimation();
 
   useEffect(() => {
-    const animate = async () => {
+    const animateIn = async () => {
       await animationControls.start("counterVisible");
-      await animationControls.start("counterHide");
     };
 
-    animate();
+    animateIn();
   }, [animationControls]);
 
   useEffect(() => {
-    const duration = 2300; // Total duration of the counting animation in milliseconds
-
-    const easeOutBezier = (x) => {
-      return 1 - Math.pow(1 - x, 2); // Custom easing function (slow -> fast -> fast -> slow)
-    };
-
     let startTimestamp = null;
     let requestId = null;
+    const duration = 5000;
+
+    const easeOutBezier = (x) => 1 - Math.pow(1 - x, 2);
 
     const step = (timestamp) => {
       if (!startTimestamp) startTimestamp = timestamp;
 
       const elapsedTime = timestamp - startTimestamp;
-      const progress = Math.min(elapsedTime / duration, 1); // Calculate progress (between 0 and 1)
-      const easedProgress = easeOutBezier(progress); // Apply the easing function
+      const progress = Math.min(elapsedTime / duration, 1);
+      const easedProgress = easeOutBezier(progress);
 
-      const currentValue = Math.floor(easedProgress * 100); // Scale progress to count value (0 to 100)
-      setCount(currentValue);
-
-      if (progress < 1) {
-        requestId = requestAnimationFrame(step);
+      if (!isReady) {
+        const currentValue = Math.min(95, Math.floor(easedProgress * 95));
+        setCount((prev) => Math.max(prev, currentValue));
+        if (progress < 1) {
+          requestId = requestAnimationFrame(step);
+        }
       }
     };
 
     requestId = requestAnimationFrame(step);
 
     return () => cancelAnimationFrame(requestId);
-  }, []);
+  }, [isReady]);
+
+  useEffect(() => {
+    if (!isReady) return;
+    setCount(100);
+    animationControls.start("counterHide");
+  }, [isReady, animationControls]);
 
   return (
     <motion.p

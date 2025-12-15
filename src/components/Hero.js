@@ -1,11 +1,10 @@
-import Image from "next/image";
 import styles from "@/styles/Hero.module.scss";
-import ProfilePic from "../../public/selfie.jpeg";
 import { motion, useAnimation } from "framer-motion";
-import animations from "@/animations/HeroAnimations";
-import { useEffect } from "react";
+import createHeroAnimations from "@/animations/HeroAnimations";
+import { useEffect, useMemo } from "react";
 
-function Hero() {
+function Hero({ isReady = false }) {
+  const delayBase = isReady ? 0.05 : 0;
   const {
     heyVariant,
     heyLettersVariant,
@@ -23,16 +22,17 @@ function Hero() {
     descriptionVariant,
     buttonVariant,
     bigCircleVariant,
-  } = animations;
+  } = useMemo(() => createHeroAnimations(delayBase), [delayBase]);
 
   const controls = useAnimation();
   useEffect(() => {
+    if (!isReady) return;
     const sequence = async () => {
       await controls.start(bigCircleVariant.visible);
       await controls.start(bigCircleVariant.spin);
     };
     sequence();
-  }, [controls]);
+  }, [controls, isReady, bigCircleVariant]);
 
   return (
     <section data-scroll-section className={styles.hero}>
@@ -41,7 +41,7 @@ function Hero() {
           <motion.span
             variants={heyVariant}
             initial="hidden"
-            animate="visible"
+            animate={isReady ? "visible" : "hidden"}
             className={styles.tricksword}
           >
             <motion.span variants={heyLettersVariant} className={styles.letter}>
@@ -61,7 +61,7 @@ function Hero() {
           <motion.span
             variants={imVariant}
             initial="hidden"
-            animate="visible"
+            animate={isReady ? "visible" : "hidden"}
             className={styles.tricksword}
           >
             <motion.span variants={imLettersVariant} className={styles.letter}>
@@ -77,7 +77,7 @@ function Hero() {
           <motion.span
             variants={wassimVariant}
             initial="hidden"
-            animate="visible"
+            animate={isReady ? "visible" : "hidden"}
             className={styles.tricksword}
           >
             <motion.span
@@ -127,7 +127,7 @@ function Hero() {
         <motion.div
           variants={linksVariant}
           initial="hidden"
-          animate="visible"
+          animate={isReady ? "visible" : "hidden"}
           className={styles.links}
         >
           <motion.a
@@ -158,19 +158,6 @@ function Hero() {
         </motion.div>
       </div>
       <div className={styles.images}>
-        <motion.div
-          variants={imageVariant}
-          initial="hidden"
-          animate="visible"
-          className={styles.selfie}
-        >
-          <Image
-            src={ProfilePic}
-            alt="Wassim Fekih"
-            placeholder="blur"
-            quality={100}
-          />
-        </motion.div>
         <motion.img
           variants={bigCircleVariant}
           initial="hidden"
@@ -194,7 +181,7 @@ function Hero() {
             <motion.span
               variants={subtitle1Variant}
               initial="hidden"
-              animate="visible"
+              animate={isReady ? "visible" : "hidden"}
               className={styles.tricksword}
             >
               <motion.span
@@ -222,7 +209,7 @@ function Hero() {
             <motion.span
               variants={subtitle2Variant}
               initial="hidden"
-              animate="visible"
+              animate={isReady ? "visible" : "hidden"}
               className={styles.tricksword}
             >
               <motion.span
@@ -292,7 +279,7 @@ function Hero() {
             <motion.span
               variants={subtitle3Variant}
               initial="hidden"
-              animate="visible"
+              animate={isReady ? "visible" : "hidden"}
               className={styles.tricksword}
             >
               <motion.span
@@ -355,7 +342,7 @@ function Hero() {
         <motion.div
           variants={descriptionVariant}
           initial="hidden"
-          animate="visible"
+          animate={isReady ? "visible" : "hidden"}
           className={styles.description}
         >
           I'm a web developer who creates seamless and intuitive digital

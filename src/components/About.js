@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { motion } from "framer-motion";
 import styles from "@/styles/About.module.scss";
 import { SmoothScrollContext } from "@/SmoothScroll.context";
@@ -36,15 +35,6 @@ function About() {
         individuals who are driven to solve complex problems through clean and
         efficient code.
       </motion.p>
-      {/* <motion.div
-        className={styles.imageContainer}
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-      >
-        <Image src="/selfie2.png" alt="My Image" width={250} height={250} />
-      </motion.div> */}
       <motion.div
         className={styles.desc1}
         initial={{ opacity: 0, y: 30 }}

@@ -10,6 +10,24 @@
   font-family: "Montreal-light";
   src: url("/fonts/NeueMontreal-Light.otf") format("OpenType");
 }
+
+:root {
+  --color-background: #f6f1e7;
+  --color-text-primary: #3a2f2a;
+  --color-text-hover: #5a4741;
+  --color-contrast: #f9f4eb;
+  --color-border-strong: #3a2f2a;
+  --color-border-subtle: rgba(58, 47, 42, 0.35);
+  --color-border-subtle-strong: rgba(58, 47, 42, 0.45);
+  --color-loader-accent: #c97c63;
+  --color-counter: #5f5145;
+  --color-cursor: rgba(58, 47, 42, 0.85);
+  --color-glow-outline: #cdbfac6e;
+  --color-glow-base: 217, 188, 157;
+  --accent-one: #d1a75c;
+  --accent-two: #c87ba8;
+  --accent-three: #7f9e72;
+}
 html.has-scroll-smooth {
   overflow: hidden;
 }
@@ -81,7 +99,8 @@ html {
 }
 
 body {
-  background-color: #ece4e4;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
   font-family: "Montreal", serif;
   perspective: 1px;
   transition: background-color 0.6s;
@@ -104,13 +123,15 @@ ul {
 }
 
 .innerCursor {
+  --cursor-x: 50vw;
+  --cursor-y: 50vh;
   position: fixed;
   transition: width 0.3s, height 0.3s, background-color 0.3s;
   left: 10px;
   width: 10px;
   height: 10px;
   transform: translate(-50%, -50%);
-  background-color: rgb(229, 229, 229);
+  background-color: var(--color-cursor);
   mix-blend-mode: difference;
   border-radius: 50%;
   pointer-events: none;
@@ -146,19 +167,19 @@ ul {
   height: 0;
   padding-bottom: 48%;
   transform: translate(-50%, -50%);
-  border: 1px solid #6565655d;
+  border: 1px solid var(--color-glow-outline);
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(192, 167, 136, 0.15) 0%,
-    rgba(192, 167, 136, 0.13) 10%,
-    rgba(192, 167, 136, 0.11) 20%,
-    rgba(192, 167, 136, 0.09) 30%,
-    rgba(192, 167, 136, 0.07) 40%,
-    rgba(192, 167, 136, 0.05) 50%,
-    rgba(192, 167, 136, 0.03) 60%,
-    rgba(192, 167, 136, 0) 70%,
-    #111111 100%
+    rgba(var(--color-glow-base), 0.15) 0%,
+    rgba(var(--color-glow-base), 0.13) 10%,
+    rgba(var(--color-glow-base), 0.11) 20%,
+    rgba(var(--color-glow-base), 0.09) 30%,
+    rgba(var(--color-glow-base), 0.07) 40%,
+    rgba(var(--color-glow-base), 0.05) 50%,
+    rgba(var(--color-glow-base), 0.03) 60%,
+    rgba(var(--color-glow-base), 0) 70%,
+    var(--color-contrast) 100%
   );
   transition: 0.4s cubic-bezier(0.215, 0.41, 0.355, 1);
   z-index: -1;

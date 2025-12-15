@@ -6,7 +6,7 @@
   height: 100vh;
   padding: 12em 4em 7em;
   justify-content: space-between;
-  color: rgb(218, 218, 218);
+  color: var(--color-text-primary);
   @media screen and (max-width: 991px) {
     display: flex;
     overflow: hidden;
@@ -75,7 +75,7 @@
       }
       a {
         transition: opacity 200ms ease;
-        color: rgb(218, 218, 218);
+        color: var(--color-text-primary);
         font-family: "Ade", sans-serif;
         text-decoration: none;
         max-width: 100%;
@@ -244,10 +244,10 @@
     width: 14.5em;
     height: 4.5em;
     font-size: 0.8em;
-    color: rgb(218, 218, 218);
+    color: var(--color-text-primary);
     background-color: transparent;
     border: 0;
-    border-bottom: 3px solid rgb(218, 218, 218);
+    border-bottom: 3px solid var(--color-border-strong);
     @media screen and (max-width: 991px) {
       font-size: 1.4em;
     }
