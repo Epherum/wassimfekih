@@ -2,6 +2,7 @@ import styles from "@/styles/Hero.module.scss";
 import { motion, useAnimation } from "framer-motion";
 import createHeroAnimations from "@/animations/HeroAnimations";
 import { useEffect, useMemo } from "react";
+import SmallStar from "@/components/SmallStar";
 
 function Hero({ isReady = false }) {
   const delayBase = isReady ? 0.05 : 0;
@@ -166,13 +167,17 @@ function Hero({ isReady = false }) {
           alt="big star"
           className={styles.bigStar}
         />
-        <motion.img
-          variants={bigCircleVariant}
-          initial="hidden"
-          animate={controls}
-          src="/star.svg"
-          alt="small star"
+        <SmallStar
           className={styles.smallStar}
+          delay={0.6}
+          position={{
+            x: "24em",
+            y: "32em",
+            xTablet: "32em",
+            yTablet: "46em",
+            xMobile: "72em",
+            yMobile: "48em",
+          }}
         />
       </div>
       <div className={styles.mainRight}>

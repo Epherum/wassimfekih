@@ -1,69 +1,105 @@
-import { useRef, useEffect } from "react";
+import { useEffect, useRef } from "react";
 import "@/styles/globals.css";
 
 export default function App({ Component, pageProps }) {
-  const innerCursorRef = useRef(null);
-  const circleRef = useRef(null);
+  const dotRef = useRef(null);
+  const ringRef = useRef(null);
   const rafRef = useRef(null);
-  const cursorPosRef = useRef({ x: 0, y: 0 });
+  const mouseRef = useRef({ x: 0, y: 0 });
+  const ringPosRef = useRef({ x: 0, y: 0 });
+  const isVisibleRef = useRef(false);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      cursorPosRef.current = { x: e.clientX, y: e.clientY };
-      if (!rafRef.current) {
-        rafRef.current = requestAnimationFrame(updateCursor);
+    mouseRef.current = {
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2,
+    };
+    ringPosRef.current = { ...mouseRef.current };
+
+    const onMove = (event) => {
+      mouseRef.current = { x: event.clientX, y: event.clientY };
+      if (!isVisibleRef.current) {
+        isVisibleRef.current = true;
+        document.body.classList.add("cursor-visible");
       }
     };
 
-    const updateCursor = () => {
-      const innerCursor = innerCursorRef.current;
-      const circle = circleRef.current;
-      const cursorPos = cursorPosRef.current;
-      if (innerCursor && circle) {
-        innerCursor.style.left = `${cursorPos.x}px`;
-        innerCursor.style.top = `${cursorPos.y}px`;
-        circle.style.left = `${cursorPos.x}px`;
-        circle.style.top = `${cursorPos.y}px`;
-      }
-      rafRef.current = null;
+    const getCursorMode = (node) => {
+      if (!node) return null;
+      const elementNode = node.nodeType === 3 ? node.parentElement : node;
+      if (!elementNode || !elementNode.closest) return null;
+      const withMode = elementNode.closest("[data-cursor]");
+      if (withMode) return withMode.getAttribute("data-cursor");
+      if (elementNode.closest("a, button")) return "ui";
+      return null;
     };
 
-    const links = document.querySelectorAll("a");
-    links.forEach((link) => {
-      link.addEventListener("mouseover", () => {
-        innerCursorRef.current.classList.add("is-hovering");
-      });
+    const setCursorMode = (mode) => {
+      document.body.classList.remove(
+        "cursor-hover-media",
+        "cursor-hover-ui",
+        "cursor-hover-nav"
+      );
+      if (mode) {
+        document.body.classList.add(`cursor-hover-${mode}`);
+      }
+    };
 
-      link.addEventListener("mouseout", () => {
-        innerCursorRef.current.classList.remove("is-hovering");
-      });
-    });
+    const onPointerOver = (event) => {
+      const mode = getCursorMode(event.target);
+      if (mode) setCursorMode(mode);
+    };
 
-    //do the same for buttons
-    const buttons = document.querySelectorAll("button");
-    buttons.forEach((button) => {
-      button.addEventListener("mouseover", () => {
-        innerCursorRef.current.classList.add("is-hovering");
-      });
+    const onPointerOut = (event) => {
+      const fromMode = getCursorMode(event.target);
+      const toMode = getCursorMode(event.relatedTarget);
+      if (fromMode && !toMode) {
+        setCursorMode(null);
+      } else if (toMode && fromMode !== toMode) {
+        setCursorMode(toMode);
+      }
+    };
 
-      button.addEventListener("mouseout", () => {
-        innerCursorRef.current.classList.remove("is-hovering");
-      });
-    });
+    const tick = () => {
+      const dot = dotRef.current;
+      const ring = ringRef.current;
+      const { x, y } = mouseRef.current;
+      const ringPos = ringPosRef.current;
 
-    document.addEventListener("mousemove", handleMouseMove);
+      ringPos.x += (x - ringPos.x) * 0.1;
+      ringPos.y += (y - ringPos.y) * 0.1;
+
+      if (dot) {
+        dot.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+      }
+      if (ring) {
+        ring.style.transform = `translate3d(${ringPos.x}px, ${ringPos.y}px, 0) translate(-50%, -50%)`;
+      }
+
+      rafRef.current = requestAnimationFrame(tick);
+    };
+
+    rafRef.current = requestAnimationFrame(tick);
+    window.addEventListener("pointermove", onMove, { passive: true });
+    document.addEventListener("pointerover", onPointerOver);
+    document.addEventListener("pointerout", onPointerOut);
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("pointermove", onMove);
+      document.removeEventListener("pointerover", onPointerOver);
+      document.removeEventListener("pointerout", onPointerOut);
       cancelAnimationFrame(rafRef.current);
     };
   }, []);
 
   return (
-    <main data-scroll-container>
+    <main>
       <Component />
-      <div ref={innerCursorRef} className="innerCursor"></div>
-      <div ref={circleRef} className="gold-gradient-circle"></div>
+      <div ref={dotRef} className="cursor-dot" aria-hidden="true">
+        <span className="cursor-text">visit ↗</span>
+        <span className="cursor-arrow">↗</span>
+      </div>
+      <div ref={ringRef} className="cursor-ring" aria-hidden="true"></div>
     </main>
   );
 }

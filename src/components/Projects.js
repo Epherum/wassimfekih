@@ -21,7 +21,20 @@ function Projects() {
           </h2>
           <h2 className={styles.title}>MISSGUIDED</h2>
           <div className={styles.video}>
-            <video src="/missguided.mp4" alt="missguided" autoPlay loop muted />
+            <a
+              href="https://wassim-missguided.web.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor="media"
+            >
+              <video
+                src="/missguided.mp4"
+                alt="missguided"
+                autoPlay
+                loop
+                muted
+              />
+            </a>
           </div>
           <div className={styles.projectdesc}>
             <div className={styles.links}>
@@ -53,7 +66,14 @@ function Projects() {
           </h2>
           <h2 className={styles.title}>ZAPPER</h2>
           <div className={styles.video}>
-            <video src="/zapper.mp4" alt="zapper" autoPlay loop muted />
+            <a
+              href="https://zapperr.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor="media"
+            >
+              <video src="/zapper.mp4" alt="zapper" autoPlay loop muted />
+            </a>
           </div>
           <div className={styles.projectdesc}>
             <div className={styles.links}>

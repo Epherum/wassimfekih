@@ -1,4 +1,5 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useRef, useState } from "react";
+import Lenis from "lenis";
 
 export const SmoothScrollContext = createContext({
   scroll: null,
@@ -6,40 +7,30 @@ export const SmoothScrollContext = createContext({
 
 export const SmoothScrollProvider = ({ children, options }) => {
   const [scroll, setScroll] = useState(null);
+  const rafId = useRef(null);
 
   useEffect(() => {
-    if (!scroll) {
-      const delay = 5000; // 5 seconds delay
+    const lenis = new Lenis({
+      smoothWheel: true,
+      smoothTouch: false,
+      ...options,
+    });
 
-      const timer = setTimeout(async () => {
-        try {
-          const LocomotiveScroll = (await import("locomotive-scroll")).default;
+    const raf = (time) => {
+      lenis.raf(time);
+      rafId.current = requestAnimationFrame(raf);
+    };
 
-          setScroll(
-            new LocomotiveScroll({
-              el:
-                document.querySelector("[data-scroll-container]") ?? undefined,
-              tablet: {
-                smooth: true,
-              },
-              smartphone: {
-                smooth: true,
-              },
-              ...options,
-            })
-          );
-        } catch (error) {
-          throw Error(`[SmoothScrollProvider]: ${error}`);
-        }
-      }, delay);
-
-      return () => clearTimeout(timer);
-    }
+    rafId.current = requestAnimationFrame(raf);
+    setScroll(lenis);
 
     return () => {
-      scroll && scroll.destroy();
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current);
+      }
+      lenis.destroy();
     };
-  }, [scroll]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <SmoothScrollContext.Provider value={{ scroll }}>

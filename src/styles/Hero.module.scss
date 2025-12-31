@@ -38,6 +38,7 @@
     }
     @media screen and (max-width: 767px) {
       width: 100%;
+      padding-bottom: 3em;
     }
     .title {
       margin-top: 20px;
@@ -54,7 +55,7 @@
       }
       @media screen and (max-width: 767px) {
         text-align: center;
-        font-size: 10em;
+        font-size: 11em;
       }
     }
     .links {
@@ -139,20 +140,20 @@
     .smallStar {
       position: absolute;
       width: 3em;
-      margin-bottom: 32em;
-      margin-left: 24em;
+      margin-bottom: var(--star-bottom, 32em);
+      margin-left: var(--star-left, 24em);
       max-width: 100%;
       vertical-align: middle;
       display: inline-block;
       @media screen and (max-width: 991px) {
         width: 5em;
-        margin-bottom: 46em;
-        margin-left: 32em;
+        margin-bottom: var(--star-bottom-tablet, 46em);
+        margin-left: var(--star-left-tablet, 32em);
       }
       @media screen and (max-width: 767px) {
         width: 7em;
-        margin-bottom: 48em;
-        margin-left: 72em;
+        margin-bottom: var(--star-bottom-mobile, 48em);
+        margin-left: var(--star-left-mobile, 72em);
       }
     }
   }
@@ -178,13 +179,14 @@
     @media screen and (max-width: 767px) {
       width: 65%;
       align-items: center;
+      padding-top: 3em;
     }
     .hero_h2 {
       width: 100%;
       margin-top: 20px;
       margin-bottom: 10px;
       font-family: "Ade", sans-serif;
-      font-size: 3.5em;
+      font-size: 3.8em;
       line-height: 1;
       font-weight: 400;
       text-transform: uppercase;
@@ -193,7 +195,7 @@
         display: block;
       }
       @media screen and (max-width: 767px) {
-        font-size: 8em;
+        font-size: 9em;
         text-align: center;
       }
       .hero_h2_1 {

@@ -1,4 +1,5 @@
 .about {
+  position: relative;
   display: grid;
   grid-template-columns: 27.2% 24.6% 20% auto;
   grid-template-rows: 50% 50%;
@@ -155,6 +156,17 @@
     }
     @media screen and (max-width: 500px) {
       font-size: calc(min(1rem, 0.8vw) + 1.3em);
+    }
+  }
+
+  .aboutStar {
+    position: absolute;
+    width: 2.8em;
+    bottom: var(--star-bottom, 10%);
+    left: var(--star-left, 70%);
+    max-width: 100%;
+    @media screen and (max-width: 768px) {
+      width: 4em;
     }
   }
 }

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import styles from "@/styles/About.module.scss";
 import { SmoothScrollContext } from "@/SmoothScroll.context";
+import SmallStar from "@/components/SmallStar";
 import { useContext } from "react";
 //import down arrow from react icons
 import { FaArrowDown } from "react-icons/fa";
@@ -14,6 +15,16 @@ function About() {
   };
   return (
     <section data-scroll-section className={styles.about}>
+      <SmallStar
+        className={styles.aboutStar}
+        delay={0.4}
+        position={{ x: "12%", y: "40%" }}
+      />
+      <SmallStar
+        className={styles.aboutStar}
+        delay={0.9}
+        position={{ x: "82%", y: "62%" }}
+      />
       <motion.p
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}

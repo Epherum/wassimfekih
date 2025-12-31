@@ -1,20 +1,24 @@
 .nav {
   display: flex;
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  z-index: 100;
+  z-index: 5;
   mix-blend-mode: difference;
   justify-content: space-between;
   align-items: center;
   padding: min(3.5rem, 2.9vw) min(4rem, 3.3vw);
   padding-bottom: 0.8em;
-  color: var(--color-text-primary);
-  @media (max-width: 991px) {
-    margin-top: 1.5em;
+  color: #b1b1b1;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  will-change: transform, opacity;
+
+  &.hidden {
+    transform: translateY(-120%);
+    opacity: 0;
   }
-  @media (max-width: 767px) {
-    margin-top: 2em;
-  }
+
   @media (max-width: 575px) {
     padding: 3em 5em;
   }
@@ -22,25 +26,32 @@
   .leftNav {
     display: flex;
     align-items: center;
+
     .logo {
-      color: var(--color-text-primary);
+      color: inherit;
       margin-right: min(2.5rem, 2.1vw);
+      transition: color 0.2s ease;
     }
+
     .request {
       border: none;
       background: none;
-      color: var(--color-text-primary);
+      color: inherit;
       font-size: 1.1em;
       text-decoration: underline 1px;
       text-underline-offset: 0.4em;
+      transition: color 0.2s ease;
+
       @media (max-width: 991px) {
         font-size: 1.8em;
         margin-left: 1em;
       }
+
       @media (max-width: 767px) {
         font-size: 1.8em;
         margin-left: 1em;
       }
+
       @media (max-width: 575px) {
         display: none;
       }
@@ -50,28 +61,33 @@
       }
     }
   }
+
   .wassim {
     font-size: 1.7em;
     margin-left: min(12rem, 9.5vw);
     font-family: "Ade", serif;
+
     @media (max-width: 991px) {
       font-size: 3em;
       margin-left: 3em;
     }
+
     @media (max-width: 575px) {
       font-size: 5em;
     }
   }
+
   .rightNav {
     display: flex;
     align-items: center;
 
     .link {
       margin-left: min(3.2rem, 2.7vw);
-      color: var(--color-text-primary);
+      color: inherit;
       font-size: min(1.35rem, 1.1vw);
       font-size: 1.1em;
       text-decoration: none;
+      transition: color 0.2s ease;
 
       @media (max-width: 991px) {
         display: none;
@@ -82,23 +98,27 @@
       }
     }
   }
+
   .projectsMobile {
     display: none;
+
     @media (max-width: 991px) {
       display: block;
       margin-left: min(3.2rem, 2.7vw);
-      color: var(--color-text-primary);
+      color: inherit;
       font-size: 1.8em;
       text-decoration: none;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 1.5em;
+      transition: color 0.2s ease;
 
       &:hover {
         color: var(--color-text-hover);
       }
     }
+
     @media (max-width: 575px) {
       font-size: 3em;
       gap: 0.5em;

@@ -2,67 +2,87 @@
   position: relative;
   width: 100%;
   color: var(--color-text-primary);
+  padding-bottom: 0;
+
   .projectOne {
     display: flex;
     justify-content: center;
-    // height: max(100vh, 850px);
+    align-items: stretch;
+    position: sticky;
+    top: 3vh;
+    height: 80vh;
     width: 100%;
-    // position: sticky;
     background-color: var(--color-background);
 
-    z-index: -100;
+    z-index: 1;
   }
+
   .projectThree {
     display: flex;
     justify-content: center;
-    // position: sticky;
-    // height: max(calc(100vh - 7em), calc(850px - 7em));
-
+    align-items: stretch;
+    position: sticky;
+    top: 11vh;
+    height: 80vh;
+    margin-top: 9vh;
     width: 100%;
     background-color: var(--color-background);
 
-    z-index: -50;
+    z-index: 2;
   }
+
+
   .container1 {
     border-top: 1px solid var(--color-border-strong);
     padding: 2em 0 0 0;
-    margin: 7em 3em 4em 3em;
+    margin: 0 3em;
+    height: 100%;
     display: grid;
     grid-template-columns: 2fr 4.2fr;
+
     @media screen and (max-width: 767px) {
       display: flex;
       flex-direction: column;
     }
   }
+
   .container2 {
     border-top: 1px solid var(--color-border-strong);
     padding: 2em 0 0 0;
-    margin: 0em 3em 6em 3em;
+    margin: 0 3em;
+    height: 100%;
     display: grid;
     grid-template-columns: 2fr 4.2fr;
+
     @media screen and (max-width: 767px) {
       display: flex;
       flex-direction: column;
     }
   }
+
   .subtitle {
     grid-column: 2/3;
     margin-bottom: 3em;
+
     @media screen and (max-width: 767px) {
       font-size: 2.5em;
       margin-bottom: 0em;
     }
   }
+
   .title {
     grid-column: 1/2;
     grid-row: 1/2;
     font-size: 1.5em;
+
     @media screen and (max-width: 767px) {
       display: none;
     }
   }
 
   .video {
+    position: relative;
+    z-index: 8;
     align-self: end;
     grid-column: 2/3;
     overflow: hidden;
@@ -72,16 +92,19 @@
     @media screen and (max-width: 767px) {
       margin: 5em 1em;
     }
+
     video {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
   }
+
   .projectdesc {
     grid-row: 2/3;
     align-self: end;
     z-index: 2 !important;
+
     @media screen and (max-width: 767px) {
       font-size: 2em;
       width: 100%;
@@ -100,6 +123,7 @@
       align-items: center;
       justify-content: center;
       transition: all 0.2s ease-in-out;
+
       @media screen and (max-width: 767px) {
         width: 100%;
       }
@@ -109,28 +133,14 @@
         color: var(--color-contrast);
       }
     }
-    .site {
-      border: 3px solid var(--color-border-strong);
-      animation: colorchange 4s infinite alternate;
-    }
-    @keyframes colorchange {
-      0%,
-      100% {
-        border-color: var(--accent-one);
-      } /* Teal */
-      20%,
-      80% {
-        border-color: var(--accent-two);
-      } /* Light Blue */
-      40%,
-      60% {
-        border-color: var(--accent-three);
-      } /* Pink */
-    }
+
+    .site {}
+
     .links {
       display: flex;
       gap: 2em;
       grid-column: 1/2;
+
       @media screen and (max-width: 767px) {
         font-size: 1.3em;
         width: 100%;
@@ -138,12 +148,14 @@
         justify-content: space-between;
       }
     }
+
     .description {
       grid-column: 1/2;
       font-size: 1em;
       line-height: 1.5em;
       width: 23em;
       margin-top: 2em;
+
       @media screen and (max-width: 767px) {
         font-size: 1.3em;
         width: 100%;

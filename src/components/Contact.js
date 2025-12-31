@@ -1,5 +1,6 @@
 import styles from "@/styles/Contact.module.scss";
 import { SmoothScrollContext } from "@/SmoothScroll.context";
+import SmallStar from "@/components/SmallStar";
 import { useContext } from "react";
 import { AiOutlineArrowUp } from "react-icons/ai";
 
@@ -17,6 +18,16 @@ function Contact() {
       className={styles.contact}
       id="contact-section"
     >
+      <SmallStar
+        className={styles.contactStar}
+        delay={0.3}
+        position={{ x: "15%", y: "70%" }}
+      />
+      <SmallStar
+        className={styles.contactStar}
+        delay={0.7}
+        position={{ x: "78%", y: "20%" }}
+      />
       <div className={styles.main}>
         <p className={styles.headline}>
           Interested In <br /> Working Together?

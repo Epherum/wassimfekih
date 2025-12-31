@@ -21,32 +21,12 @@
   --color-border-subtle-strong: rgba(58, 47, 42, 0.45);
   --color-loader-accent: #c97c63;
   --color-counter: #5f5145;
-  --color-cursor: rgba(58, 47, 42, 0.85);
   --color-glow-outline: #cdbfac6e;
   --color-glow-base: 217, 188, 157;
   --accent-one: #d1a75c;
   --accent-two: #c87ba8;
   --accent-three: #7f9e72;
 }
-html.has-scroll-smooth {
-  overflow: hidden;
-}
-
-html.has-scroll-dragging {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.has-scroll-smooth body {
-  overflow: hidden;
-}
-
-.has-scroll-smooth [data-scroll-container] {
-  min-height: 100vh;
-}
-
 /* .c-scrollbar {
   position: absolute;
   right: 0;
@@ -95,22 +75,16 @@ html {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  cursor: none;
 }
 
 body {
   background-color: var(--color-background);
   color: var(--color-text-primary);
   font-family: "Montreal", serif;
-  perspective: 1px;
   transition: background-color 0.6s;
   max-width: 2000px;
   margin: 0 auto;
   font-size: 1vw;
-}
-
-body {
-  overflow: hidden !important;
 }
 
 /* remove scrollbar  */
@@ -122,80 +96,111 @@ ul {
   list-style: none;
 }
 
-.innerCursor {
-  --cursor-x: 50vw;
-  --cursor-y: 50vh;
+body,
+a,
+button {
+  cursor: none;
+}
+
+.cursor-dot,
+.cursor-ring {
   position: fixed;
-  transition: width 0.3s, height 0.3s, background-color 0.3s;
-  left: 10px;
-  width: 10px;
-  height: 10px;
-  transform: translate(-50%, -50%);
-  background-color: var(--color-cursor);
-  mix-blend-mode: difference;
-  border-radius: 50%;
+  top: 0;
+  left: 0;
   pointer-events: none;
-  z-index: -1;
   opacity: 0;
-  animation: fadeIn 5s forwards;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
+  z-index: 6;
+  transition: opacity 0.2s ease;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.cursor-visible .cursor-dot,
+.cursor-visible .cursor-ring {
+  opacity: 1;
 }
 
-.innerCursor.is-hovering {
-  width: 25px;
-  height: 25px;
-  transition: width 0.3s, height 0.3s;
+.cursor-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background-color: #111111;
+  color: #f6f1e7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 9px;
+  line-height: 1;
+  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+  z-index: 7;
 }
 
-.gold-gradient-circle {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 48%;
-  height: 0;
-  padding-bottom: 48%;
-  transform: translate(-50%, -50%);
-  border: 1px solid var(--color-glow-outline);
-  border-radius: 50%;
+.cursor-dot span {
+  opacity: 0;
+  transition: opacity 0.2s ease, font-size 0.2s ease;
+}
+
+.cursor-ring {
+  width: 832px;
+  height: 832px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   background: radial-gradient(
     circle,
-    rgba(var(--color-glow-base), 0.15) 0%,
-    rgba(var(--color-glow-base), 0.13) 10%,
-    rgba(var(--color-glow-base), 0.11) 20%,
-    rgba(var(--color-glow-base), 0.09) 30%,
-    rgba(var(--color-glow-base), 0.07) 40%,
-    rgba(var(--color-glow-base), 0.05) 50%,
-    rgba(var(--color-glow-base), 0.03) 60%,
-    rgba(var(--color-glow-base), 0) 70%,
-    var(--color-contrast) 100%
+    rgba(209, 167, 92, 0.1) 0%,
+    rgba(209, 167, 92, 0) 60%
   );
-  transition: 0.4s cubic-bezier(0.215, 0.41, 0.355, 1);
-  z-index: -1;
-  opacity: 0;
-  animation: fadeIn 5s 2s forwards;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
+  box-shadow: none;
+  z-index: 6;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+.cursor-text,
+.cursor-arrow {
+  font-size: 10px;
+  line-height: 1;
+}
+
+.cursor-arrow {
+  font-size: 18px;
+}
+
+.cursor-hover-media .cursor-dot {
+  width: 130px;
+  height: 130px;
+}
+
+.cursor-hover-media .cursor-text {
+  opacity: 1;
+  font-size: 15px;
+}
+
+.cursor-hover-ui .cursor-dot {
+  width: 62px;
+  height: 62px;
+}
+
+.cursor-hover-ui .cursor-text {
+  opacity: 1;
+  font-size: 11px;
+}
+
+.cursor-hover-nav .cursor-dot {
+  width: 12px;
+  height: 12px;
+}
+
+.cursor-hover-nav .cursor-arrow {
+  opacity: 0;
+}
+
+@media (hover: none) {
+  body,
+  a,
+  button {
+    cursor: auto;
   }
-  to {
-    opacity: 1;
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
   }
 }
