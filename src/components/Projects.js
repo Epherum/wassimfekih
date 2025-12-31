@@ -5,16 +5,23 @@ import { useEffect, useRef, useState } from "react";
 
 const projects = [
   {
-    name: "MISSGUIDED",
+    name: "NEXEL",
+    shortDescription: "Web agency website",
+    video: "/Nexel.mp4",
+    site: "https://nexeldigitalstudio.com/",
+    code: "https://github.com/Epherum/Nexel",
+  },
+  {
+    name: "MOON DIVINE",
     shortDescription: "Ecommerce website",
-    video: "/missguided.mp4",
+    video: "/Moondivine.mp4",
     site: "https://wassim-missguided.web.app/",
     code: "https://github.com/Epherum/Missguided",
   },
   {
     name: "ZAPPER",
     shortDescription: "Issue tracking app",
-    video: "/zapper.mp4",
+    video: "/Zapper.mp4",
     site: "https://zapperr.vercel.app/",
     code: "https://github.com/Epherum/Zapper",
   },
@@ -128,13 +135,20 @@ function Projects() {
               }}
             >
               <div className={styles.projectMedia}>
-                <video
-                  src={project.video}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
+                <a
+                  href={project.site}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="media"
+                >
+                  <video
+                    src={project.video}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  />
+                </a>
               </div>
               <div className={styles.projectMeta}>
                 <div className={styles.projectDetails}>
@@ -144,22 +158,26 @@ function Projects() {
                   <p className={styles.projectTitle}>{project.name}</p>
                 </div>
                 <div className={styles.projectActions}>
-                  <a
-                    className={styles.projectLink}
-                    href={project.site}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    VISIT SITE
-                  </a>
-                  <a
-                    className={styles.projectLink}
-                    href={project.code}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    VIEW CODE
-                  </a>
+                  {project.site ? (
+                    <a
+                      className={styles.projectLink}
+                      href={project.site}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      VISIT SITE
+                    </a>
+                  ) : null}
+                  {project.code ? (
+                    <a
+                      className={styles.projectLink}
+                      href={project.code}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      VIEW CODE
+                    </a>
+                  ) : null}
                 </div>
               </div>
             </article>
