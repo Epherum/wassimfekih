@@ -125,3 +125,8 @@
     }
   }
 }
+
+:global(body.projects-section-active) .nav {
+  color: #d1d1c7;
+  mix-blend-mode: normal;
+}

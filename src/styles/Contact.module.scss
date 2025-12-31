@@ -131,3 +131,18 @@
     }
   }
 }
+
+:global(body.projects-section-active) .contact {
+  color: #d1d1c7;
+}
+
+:global(body.projects-section-active) .contact .email,
+:global(body.projects-section-active) .contact .buttons .button {
+  color: #d1d1c7;
+  border-color: #d1d1c7;
+}
+
+:global(body.projects-section-active) .contact .buttons .button:hover {
+  background-color: #d1d1c7;
+  color: #080807;
+}

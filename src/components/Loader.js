@@ -66,6 +66,7 @@ function Loader({ onFinish }) {
   const animationControls = useAnimation();
   const [isReady, setIsReady] = useState(false);
   const hasFinishedRef = useRef(false);
+  const scrollYRef = useRef(0);
 
   const loaderRef = useRef(null);
 
@@ -82,6 +83,11 @@ function Loader({ onFinish }) {
   useEffect(() => {
     document.body.style.backgroundColor = "#111111";
     document.body.classList.add("is-loading");
+    document.documentElement.classList.add("is-loading");
+    scrollYRef.current = window.scrollY || 0;
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollYRef.current}px`;
+    document.body.style.width = "100%";
 
     let isCancelled = false;
     let loadHandler = null;
@@ -117,6 +123,10 @@ function Loader({ onFinish }) {
         window.removeEventListener("load", loadHandler);
       }
       document.body.classList.remove("is-loading");
+      document.documentElement.classList.remove("is-loading");
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
     };
   }, []);
 
@@ -126,8 +136,13 @@ function Loader({ onFinish }) {
     const finishLoader = async () => {
       if (hasFinishedRef.current) return;
       hasFinishedRef.current = true;
-      document.body.style.backgroundColor = "var(--color-background)";
+      document.body.style.backgroundColor = "";
       document.body.classList.remove("is-loading");
+      document.documentElement.classList.remove("is-loading");
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      window.scrollTo(0, scrollYRef.current);
       await animationControls.start("hide");
       if (loaderRef.current) {
         loaderRef.current.style.opacity = 0;
