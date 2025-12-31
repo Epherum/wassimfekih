@@ -149,7 +149,7 @@ function Hero({ isReady = false }) {
           </motion.a>
           <motion.a
             variants={linkVariant}
-            href="/resume.pdf"
+            href="/Wassim Fekih Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.link}
@@ -169,7 +169,7 @@ function Hero({ isReady = false }) {
         />
         <SmallStar
           className={styles.smallStar}
-          delay={0.6}
+          delay={2.4}
           position={{
             x: "24em",
             y: "32em",

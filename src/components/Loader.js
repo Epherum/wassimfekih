@@ -81,11 +81,12 @@ function Loader({ onFinish }) {
 
   useEffect(() => {
     document.body.style.backgroundColor = "#111111";
+    document.body.classList.add("is-loading");
 
     let isCancelled = false;
     let loadHandler = null;
 
-    const minDelay = new Promise((resolve) => setTimeout(resolve, 0));
+    const minDelay = new Promise((resolve) => setTimeout(resolve, 1000));
     const fontsReady = document.fonts?.ready ?? Promise.resolve();
     const pageLoaded = new Promise((resolve) => {
       if (document.readyState === "complete") {
@@ -115,6 +116,7 @@ function Loader({ onFinish }) {
       if (loadHandler) {
         window.removeEventListener("load", loadHandler);
       }
+      document.body.classList.remove("is-loading");
     };
   }, []);
 
@@ -125,6 +127,7 @@ function Loader({ onFinish }) {
       if (hasFinishedRef.current) return;
       hasFinishedRef.current = true;
       document.body.style.backgroundColor = "var(--color-background)";
+      document.body.classList.remove("is-loading");
       await animationControls.start("hide");
       if (loaderRef.current) {
         loaderRef.current.style.opacity = 0;

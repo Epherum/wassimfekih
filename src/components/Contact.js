@@ -68,7 +68,7 @@ function Contact() {
         </a>
         <a
           className={styles.button}
-          href="/resume.pdf"
+          href="/Wassim Fekih Resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
         >

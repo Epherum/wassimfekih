@@ -8,9 +8,9 @@ const SmallStar = ({ className, delay = 0, position = {} }) => {
 
   useEffect(() => {
     if (!inView) return;
-    const timer = setTimeout(async () => {
-      await controls.start("visible");
-      controls.start("spin");
+    controls.start("spin");
+    const timer = setTimeout(() => {
+      controls.start("visible");
     }, delay * 1000);
 
     return () => clearTimeout(timer);

@@ -87,6 +87,10 @@ body {
   font-size: 1vw;
 }
 
+body.is-loading {
+  overflow: hidden;
+}
+
 /* remove scrollbar  */
 ::-webkit-scrollbar {
   display: none;
