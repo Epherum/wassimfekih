@@ -1,20 +1,20 @@
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
 
-const SmallStar = ({ className, delay = 0, position = {} }) => {
+const SmallStar = ({ className, delay = 0, position = {}, isReady = false }) => {
   const ref = useRef(null);
   const controls = useAnimation();
   const inView = useInView(ref, { amount: 0.2, once: true });
 
   useEffect(() => {
-    if (!inView) return;
+    if (!inView || !isReady) return;
     controls.start("spin");
     const timer = setTimeout(() => {
       controls.start("visible");
     }, delay * 1000);
 
     return () => clearTimeout(timer);
-  }, [controls, delay, inView]);
+  }, [controls, delay, inView, isReady]);
 
   const style = {};
   if (position.x) style["--star-left"] = position.x;

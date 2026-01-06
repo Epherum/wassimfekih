@@ -2,16 +2,26 @@
   height: 100vh;
   color: var(--color-text-primary);
   position: relative;
+
   .contactStar {
     position: absolute;
     width: 2.6em;
     bottom: var(--star-bottom, 20%);
     left: var(--star-left, 70%);
     max-width: 100%;
+
     @media screen and (max-width: 991px) {
       width: 4em;
+      bottom: var(--star-bottom-tablet, var(--star-bottom, 20%));
+      left: var(--star-left-tablet, var(--star-left, 70%));
+    }
+
+    @media screen and (max-width: 575px) {
+      bottom: var(--star-bottom-mobile, var(--star-bottom-tablet, 20%));
+      left: var(--star-left-mobile, var(--star-left-tablet, 70%));
     }
   }
+
   .main {
     position: absolute;
     top: 50%;
@@ -22,10 +32,11 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
     .headline {
       font-family: "Ade", serif;
       margin-top: 0.2em;
-      font-size: 5em;
+      font-size: 7em;
       line-height: 1.4em;
       letter-spacing: 0.04em;
       font-weight: 100;
@@ -35,11 +46,13 @@
       justify-content: center;
       align-items: center;
       text-align: center;
+
       @media screen and (max-width: 991px) {
-        font-size: 7em;
+        font-size: 7.5em;
         letter-spacing: 0.02em;
       }
     }
+
     .drop {
       display: flex;
       justify-content: center;
@@ -47,51 +60,61 @@
       text-align: center;
       font-size: 1em;
       margin-bottom: 0.5em;
-      @media screen and (max-width: 991px) {
-        font-size: 2em;
-      }
-    }
-    .email {
-      font-size: min(2.1rem, 1.7vw);
-      color: var(--color-text-primary);
-      text-align: center;
-      text-decoration: none;
+
       @media screen and (max-width: 991px) {
         font-size: 3em;
       }
     }
+
+    .email {
+      font-size: min(3.2rem, 2.5vw);
+      color: var(--color-text-primary);
+      text-align: center;
+      text-decoration: none;
+
+      @media screen and (max-width: 991px) {
+        font-size: 4.6em;
+      }
+    }
   }
+
   .left {
     position: absolute;
     left: min(3rem, 2.6vw);
     bottom: min(3rem, 2.6vw);
     font-size: min(1.3rem, 1vw);
+
     //first p
-    & > p:first-child {
+    &>p:first-child {
       margin-bottom: min(0.5rem, 0.6vw);
     }
+
     @media screen and (max-width: 991px) {
       display: none;
     }
   }
+
   .right {
     position: absolute;
     right: min(3rem, 2.6vw);
     bottom: min(3rem, 2.6vw);
-    font-size: min(1.3rem, 1vw);
+    font-size: min(2rem, 1.5vw);
     text-align: right;
-    & > p:first-child {
+
+    &>p:first-child {
       margin-bottom: min(0.5rem, 0.6vw);
     }
+
     @media screen and (max-width: 991px) {
       //center it
       bottom: 2em;
       right: 50%;
       transform: translateX(50%);
       text-align: center;
-      font-size: 2em;
+      font-size: 3.2em;
     }
   }
+
   .buttons {
     position: absolute;
     bottom: min(3rem, 2.6vw);
@@ -101,7 +124,9 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    margin-bottom: 1rem;
     gap: min(1rem, 0.8vw);
+
     @media screen and (max-width: 991px) {
       //center it
       bottom: 15em;
@@ -109,18 +134,20 @@
       transform: translateX(-50%);
       text-align: center;
     }
+
     .button {
       background-color: transparent;
       margin: 0 min(1rem, 0.8vw);
       border-radius: 3rem;
       border: 1px solid var(--color-border-strong);
       padding: min(1rem, 0.8vw) min(2.5rem, 2.2vw);
-      font-size: min(1rem, 0.8vw);
+      font-size: min(1.6rem, 1.2vw);
       color: var(--color-text-primary);
       text-decoration: none;
       transition: all 0.2s ease-in-out;
+
       @media screen and (max-width: 991px) {
-        font-size: 1.7em;
+        font-size: 2.8em;
         padding: 1em 2.5em;
       }
 

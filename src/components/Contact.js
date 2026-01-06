@@ -21,12 +21,26 @@ function Contact() {
       <SmallStar
         className={styles.contactStar}
         delay={0.3}
-        position={{ x: "15%", y: "70%" }}
+        position={{
+          x: "15%",
+          y: "70%",
+          xTablet: "12%",
+          yTablet: "55%",
+          xMobile: "10%",
+          yMobile: "45%",
+        }}
       />
       <SmallStar
         className={styles.contactStar}
         delay={0.7}
-        position={{ x: "78%", y: "20%" }}
+        position={{
+          x: "78%",
+          y: "20%",
+          xTablet: "72%",
+          yTablet: "32%",
+          xMobile: "68%",
+          yMobile: "25%",
+        }}
       />
       <div className={styles.main}>
         <p className={styles.headline}>
@@ -45,7 +59,7 @@ function Contact() {
         <p onClick={goToTop}>
           back to top &nbsp; <AiOutlineArrowUp />
         </p>
-        <p>2023 - All Rights Reserved</p>
+        <p>2026 - All Rights Reserved</p>
       </div>
       <div className={styles.buttons}>
         <a

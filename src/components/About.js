@@ -18,12 +18,26 @@ function About() {
       <SmallStar
         className={styles.aboutStar}
         delay={0.4}
-        position={{ x: "12%", y: "40%" }}
+        position={{
+          x: "12%",
+          y: "40%",
+          xTablet: "10%",
+          yTablet: "22%",
+          xMobile: "8%",
+          yMobile: "14%",
+        }}
       />
       <SmallStar
         className={styles.aboutStar}
         delay={0.9}
-        position={{ x: "82%", y: "62%" }}
+        position={{
+          x: "82%",
+          y: "62%",
+          xTablet: "72%",
+          yTablet: "14%",
+          xMobile: "68%",
+          yMobile: "10%",
+        }}
       />
       <motion.p
         initial={{ opacity: 0, y: 30 }}

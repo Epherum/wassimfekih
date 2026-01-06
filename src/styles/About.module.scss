@@ -154,6 +154,7 @@
       width: 100%;
       font-size: 1.8em;
       height: 3em;
+      justify-self: center;
     }
 
     @media screen and (max-width: 500px) {
@@ -170,6 +171,13 @@
 
     @media screen and (max-width: 768px) {
       width: 4em;
+      bottom: var(--star-bottom-tablet, var(--star-bottom, 10%));
+      left: var(--star-left-tablet, var(--star-left, 70%));
+    }
+
+    @media screen and (max-width: 500px) {
+      bottom: var(--star-bottom-mobile, var(--star-bottom-tablet, 10%));
+      left: var(--star-left-mobile, var(--star-left-tablet, 70%));
     }
   }
 }

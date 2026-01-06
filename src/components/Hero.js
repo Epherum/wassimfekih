@@ -169,7 +169,8 @@ function Hero({ isReady = false }) {
         />
         <SmallStar
           className={styles.smallStar}
-          delay={2.4}
+          delay={0.6}
+          isReady={isReady}
           position={{
             x: "24em",
             y: "32em",

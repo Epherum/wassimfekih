@@ -14,8 +14,11 @@ function Nav({ isReady = false }) {
     const update = () => {
       const currentY = window.scrollY || 0;
       const delta = currentY - lastScrollY.current;
+      const scrollHeight = document.documentElement.scrollHeight || 0;
+      const viewportHeight = window.innerHeight || 0;
+      const isNearBottom = currentY + viewportHeight >= scrollHeight - 24;
 
-      if (currentY <= 10) {
+      if (currentY <= 10 || isNearBottom) {
         setIsHidden(false);
       } else if (Math.abs(delta) > 6) {
         setIsHidden(delta > 0);
@@ -204,14 +207,17 @@ function Nav({ isReady = false }) {
           </motion.li>
         ))}
       </ul>
-      <a
+      <motion.a
         className={styles.projectsMobile}
         onClick={goToProjects}
         data-cursor="nav"
         href="#projects-section"
+        variants={navItemVariants}
+        initial="hidden"
+        animate={isReady ? "visible" : "hidden"}
       >
         projects <FaArrowDown />
-      </a>
+      </motion.a>
     </nav>
   );
 }
