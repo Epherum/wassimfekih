@@ -8,6 +8,7 @@ const projects = [
     name: "NEXEL",
     shortDescription: "Web agency website",
     video: "/Nexel.mp4",
+    poster: "/posters/Nexel.jpg",
     site: "https://nexeldigitalstudio.com/",
     code: "https://github.com/Epherum/Nexel",
   },
@@ -15,6 +16,7 @@ const projects = [
     name: "MOON DIVINE",
     shortDescription: "Ecommerce website",
     video: "/Moondivine.mp4",
+    poster: "/posters/Moondivine.jpg",
     site: "https://wassim-missguided.web.app/",
     code: "https://github.com/Epherum/Missguided",
   },
@@ -22,6 +24,7 @@ const projects = [
     name: "ZAPPER",
     shortDescription: "Issue tracking app",
     video: "/Zapper.mp4",
+    poster: "/posters/Zapper.jpg",
     site: "https://zapperr.vercel.app/",
     code: "https://github.com/Epherum/Zapper",
   },
@@ -40,6 +43,70 @@ const titleVariants = {
     transition: { duration: 0.3, ease: "easeIn" },
   },
 };
+
+function ProjectVideo({ src, title, poster }) {
+  const videoRef = useRef(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+  const shouldLoadRef = useRef(shouldLoad);
+
+  useEffect(() => {
+    shouldLoadRef.current = shouldLoad;
+  }, [shouldLoad]);
+
+  useEffect(() => {
+    const videoElement = videoRef.current;
+    if (!videoElement) {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) {
+          return;
+        }
+
+        if (entry.isIntersecting) {
+          if (!shouldLoadRef.current) {
+            setShouldLoad(true);
+          }
+
+          const playPromise = videoElement.play();
+          if (playPromise && typeof playPromise.catch === "function") {
+            playPromise.catch(() => {});
+          }
+        } else {
+          videoElement.pause();
+        }
+      },
+      {
+        root: null,
+        rootMargin: "220px 0px",
+        threshold: 0.2,
+      }
+    );
+
+    observer.observe(videoElement);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  return (
+    <video
+      ref={videoRef}
+      src={shouldLoad ? src : undefined}
+      poster={poster}
+      preload={shouldLoad ? "metadata" : "none"}
+      autoPlay
+      loop
+      muted
+      playsInline
+      disablePictureInPicture
+      aria-label={`${title} preview video`}
+    />
+  );
+}
 
 function Projects() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -141,12 +208,10 @@ function Projects() {
                   rel="noopener noreferrer"
                   data-cursor="media"
                 >
-                  <video
+                  <ProjectVideo
                     src={project.video}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
+                    title={project.name}
+                    poster={project.poster}
                   />
                 </a>
               </div>
