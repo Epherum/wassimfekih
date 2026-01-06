@@ -36,7 +36,7 @@
     .headline {
       font-family: "Ade", serif;
       margin-top: 0.2em;
-      font-size: 7em;
+      font-size: 5em;
       line-height: 1.4em;
       letter-spacing: 0.04em;
       font-weight: 100;
@@ -67,7 +67,7 @@
     }
 
     .email {
-      font-size: min(3.2rem, 2.5vw);
+      font-size: min(2.1rem, 1.7vw);
       color: var(--color-text-primary);
       text-align: center;
       text-decoration: none;
@@ -98,7 +98,7 @@
     position: absolute;
     right: min(3rem, 2.6vw);
     bottom: min(3rem, 2.6vw);
-    font-size: min(2rem, 1.5vw);
+    font-size: min(1.3rem, 1vw);
     text-align: right;
 
     &>p:first-child {
@@ -141,7 +141,7 @@
       border-radius: 3rem;
       border: 1px solid var(--color-border-strong);
       padding: min(1rem, 0.8vw) min(2.5rem, 2.2vw);
-      font-size: min(1.6rem, 1.2vw);
+      font-size: min(1rem, 0.8vw);
       color: var(--color-text-primary);
       text-decoration: none;
       transition: all 0.2s ease-in-out;
